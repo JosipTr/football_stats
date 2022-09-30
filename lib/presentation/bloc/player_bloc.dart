@@ -15,9 +15,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   List<Player> players = List.empty(growable: true);
 
   PlayerBloc(this._getPlayers, this._addPlayer, this._removePlayer) : super(PlayerInitial()) {
-    on<GetPlayersEvent>(_onGetPlayersEvent) {
-      
-    };
+    on<GetPlayersEvent>(_onGetPlayersEvent);
+    on<AddPlayerEvent>(_onAddPlayerEvent);
+    on<RemovePlayerEvent>(_onRemovePlayerEvent);
   }
 
   void _onGetPlayersEvent(GetPlayersEvent event, Emitter<PlayerState> emit) async{
