@@ -13,7 +13,7 @@ final injector = GetIt.instance;
 Future<void> initDependencies() async{
 
   //database
-  final database = $FloorAppDatabase.databaseBuilder('database.db').build();
+  final database = await $FloorAppDatabase.databaseBuilder('database.db').build();
   injector.registerSingleton(database);
 
   //bloc
