@@ -39,6 +39,10 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   void _onRemovePlayerEvent(RemovePlayerEvent event, Emitter<PlayerState> emit) async{
     var either = await _removePlayer.call(event.player);
     either.fold((l) => Exception(), (r) => players.remove(event.player));
-    emit(Loaded(players));
+    if (players.isEmpty) {
+      emit(Empty('Empty list'));
+    } else {
+      emit(Loaded(players));
+    }
   }
 }

@@ -15,9 +15,21 @@ void showAddPlayerDialog(BuildContext context) {
             title: const Text('Dodaj igrača'),
             actions: [
               TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Ime:',
+                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                ),
                 onChanged: (value) => name = value,
               ),
+              const SizedBox(height: 10,),
+
               TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Prezime:',
+                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                ),
                 onChanged: (value) => surname = value,
               ),
               Row(
@@ -30,8 +42,12 @@ void showAddPlayerDialog(BuildContext context) {
                       child: const Text('Odustani')),
                   TextButton(
                       onPressed: () {
+                        try{
                         context.read<PlayerBloc>().add(
                             AddPlayerEvent(Player(name: name, surname: surname)));
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Pogreška: Unesi ime i prezime'),));
+                        }
                         Navigator.of(context).pop();
                       },
                       child: const Text('Dodaj')),
