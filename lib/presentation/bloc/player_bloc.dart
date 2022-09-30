@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_stats/data/models/player_model.dart';
 import 'package:football_stats/domain/usecases/add_player_usecase.dart';
@@ -23,7 +24,11 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   void _onGetPlayersEvent(GetPlayersEvent event, Emitter<PlayerState> emit) async{
     var either = await _getPlayers.call();
     either.fold((l) => Exception(), (r) => players = r);
-    emit(Loaded(players));
+    if (players.isEmpty) {
+      emit(Empty('Empty list'));
+    } else {
+      emit(Loaded(players));
+    }
   }
 
   void _onAddPlayerEvent(AddPlayerEvent event, Emitter<PlayerState> emit) async{

@@ -19,23 +19,23 @@ class PlayerBottomNavigationBar extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(
             backgroundColor: Colors.blue,
-            icon: Icon(Icons.add),
+            icon: Image(image: AssetImage('assets/goal.png')),
             label: 'Golovi'),
         BottomNavigationBarItem(
             backgroundColor: Colors.yellow,
-            icon: Icon(Icons.search),
+            icon: Image(image: AssetImage('assets/assistance.png')),
             label: 'Asistencije'),
         BottomNavigationBarItem(
             backgroundColor: Colors.orange,
-            icon: Icon(Icons.deblur),
+            icon: Image(image: AssetImage('assets/red-card.png')),
             label: 'Kartoni'),
         BottomNavigationBarItem(
             backgroundColor: Colors.grey,
-            icon: Icon(Icons.delete),
+            icon: Image(image: AssetImage('assets/training.png')),
             label: 'Treninzi'),
         BottomNavigationBarItem(
             backgroundColor: Colors.green,
-            icon: Icon(Icons.shop),
+            icon: Image(image: AssetImage('assets/scoreboard.png')),
             label: 'Utakmice')
       ],
       onTap: (index) {

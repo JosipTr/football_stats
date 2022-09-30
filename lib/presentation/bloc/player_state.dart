@@ -17,3 +17,9 @@ class Error extends PlayerState {
 
   Error(this.message);
 }
+
+class Empty extends PlayerState {
+  final String message;
+
+  Empty(this.message);
+}
