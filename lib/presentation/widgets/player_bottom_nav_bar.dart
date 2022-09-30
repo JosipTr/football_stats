@@ -14,7 +14,8 @@ class PlayerBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      selectedItemColor: Colors.red,
+      fixedColor: Color.fromARGB(255, 42, 65, 83),
+      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
       currentIndex: state.index,
       items: const [
         BottomNavigationBarItem(
