@@ -15,6 +15,7 @@ class GoalWidget extends StatelessWidget {
     return ListView.builder(
         itemCount: state.players.length,
         itemBuilder: ((context, index) => ListTile(
+          tileColor: state.players[index].isSelected ? Colors.grey : Colors.white,
               title: Text(state.players[index].name),
               trailing: IconButton(
                   icon: const Icon(Icons.delete),
@@ -23,6 +24,10 @@ class GoalWidget extends StatelessWidget {
                         .read<PlayerBloc>()
                         .add(RemovePlayerEvent(state.players[index]));
                   }),
+                  onLongPress: () {
+                    state.players[index].isSelected = !state.players[index].isSelected;
+                    context.read<PlayerBloc>().add(UpdatePlayerEvent(state.players[index]));
+                  } 
             )));
   }
 }
