@@ -1,5 +1,6 @@
   import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:football_stats/presentation/widgets/app_bar_widgets/add_player_widget.dart';
 import 'package:football_stats/utilities/logic/functions/remove_selected_players.dart';
 import 'package:football_stats/utilities/logic/functions/show_unselected.dart';
 import 'package:football_stats/utilities/logic/functions/switch_select_state.dart';
@@ -27,7 +28,7 @@ BlocBuilder<PlayerBloc, PlayerState> showAppBarWidgets() {
               return showUnselected(state);
             }
           } else {
-            return const Icon(Icons.deblur);
+            return const AddPlayerWidget();
           }
         }));
   }
