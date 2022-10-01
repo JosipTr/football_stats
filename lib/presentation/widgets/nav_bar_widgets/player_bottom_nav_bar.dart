@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../utilities/navigation/constants/nav_bar_item.dart';
-import '../../utilities/navigation/navigation_cubit.dart';
+import '../../../utilities/navigation/constants/nav_bar_item.dart';
+import '../../../utilities/navigation/navigation_cubit.dart';
 
 class PlayerBottomNavigationBar extends StatelessWidget {
   final NavigationState state;

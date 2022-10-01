@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_stats/presentation/pages/goal_page.dart';
 import 'package:football_stats/utilities/navigation/constants/nav_bar_item.dart';
 import 'package:football_stats/utilities/navigation/navigation_cubit.dart';
-import '../../utilities/logic/functions/add_player_dialog.dart';
-import '../widgets/player_bottom_nav_bar.dart';
+import '../widgets/app_bar_widgets/add_player_widget.dart';
+import '../widgets/nav_bar_widgets/player_bottom_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,14 +14,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Football Statistics'),
-        actions: [
-          Row(mainAxisSize: MainAxisSize.min, children: [
-            IconButton(
-              onPressed: () => showAddPlayerDialog(context),
-              icon: const Icon(Icons.add),
-            ),
-          ])
-        ],
+        actions: const [AddPlayerWidget()],
       ),
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {

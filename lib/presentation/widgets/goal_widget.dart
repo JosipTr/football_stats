@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/player_bloc.dart';
 
-class PlayerWidget extends StatelessWidget {
+class GoalWidget extends StatelessWidget {
   final Loaded state;
-  const PlayerWidget({
-    Key? key, required this.state,
+  const GoalWidget({
+    Key? key,
+    required this.state,
   }) : super(key: key);
 
   @override
@@ -15,9 +16,13 @@ class PlayerWidget extends StatelessWidget {
         itemCount: state.players.length,
         itemBuilder: ((context, index) => ListTile(
               title: Text(state.players[index].name),
-              trailing: IconButton(icon: const Icon(Icons.delete), onPressed: () {
-                context.read<PlayerBloc>().add(RemovePlayerEvent(state.players[index]));
-              }),
+              trailing: IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    context
+                        .read<PlayerBloc>()
+                        .add(RemovePlayerEvent(state.players[index]));
+                  }),
             )));
   }
 }
