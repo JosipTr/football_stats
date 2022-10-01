@@ -15,3 +15,9 @@ class RemovePlayerEvent extends PlayerEvent {
 
   RemovePlayerEvent(this.player);
 }
+
+class UpdatePlayerEvent extends PlayerEvent {
+  final Player player;
+
+  UpdatePlayerEvent(this.player);
+}

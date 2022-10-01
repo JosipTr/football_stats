@@ -10,14 +10,12 @@ part of 'database.dart';
 class $FloorAppDatabase {
   /// Creates a database builder for a persistent database.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  // ignore: library_private_types_in_public_api
   static _$AppDatabaseBuilder databaseBuilder(String name) =>
       _$AppDatabaseBuilder(name);
 
   /// Creates a database builder for an in memory database.
   /// Information stored in an in memory database disappears when the process is killed.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  // ignore: library_private_types_in_public_api
   static _$AppDatabaseBuilder inMemoryDatabaseBuilder() =>
       _$AppDatabaseBuilder(null);
 }
@@ -87,7 +85,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Player` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `surname` TEXT NOT NULL, `goals` INTEGER NOT NULL, `assists` INTEGER NOT NULL, `yellowCards` INTEGER NOT NULL, `redCards` INTEGER NOT NULL, `trainingDays` INTEGER NOT NULL, `overallTrainingDays` INTEGER NOT NULL, `matchesPlayed` INTEGER NOT NULL, `overallNumberOfMatches` INTEGER NOT NULL, `playedMinutes` REAL NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Player` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `surname` TEXT NOT NULL, `goals` INTEGER NOT NULL, `assists` INTEGER NOT NULL, `yellowCards` INTEGER NOT NULL, `redCards` INTEGER NOT NULL, `trainingDays` INTEGER NOT NULL, `overallTrainingDays` INTEGER NOT NULL, `matchesPlayed` INTEGER NOT NULL, `overallNumberOfMatches` INTEGER NOT NULL, `playedMinutes` REAL NOT NULL, `isSelected` INTEGER NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -121,7 +119,27 @@ class _$PlayerDao extends PlayerDao {
                   'overallTrainingDays': item.overallTrainingDays,
                   'matchesPlayed': item.matchesPlayed,
                   'overallNumberOfMatches': item.overallNumberOfMatches,
-                  'playedMinutes': item.playedMinutes
+                  'playedMinutes': item.playedMinutes,
+                  'isSelected': item.isSelected ? 1 : 0
+                }),
+        _playerUpdateAdapter = UpdateAdapter(
+            database,
+            'Player',
+            ['id'],
+            (Player item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'surname': item.surname,
+                  'goals': item.goals,
+                  'assists': item.assists,
+                  'yellowCards': item.yellowCards,
+                  'redCards': item.redCards,
+                  'trainingDays': item.trainingDays,
+                  'overallTrainingDays': item.overallTrainingDays,
+                  'matchesPlayed': item.matchesPlayed,
+                  'overallNumberOfMatches': item.overallNumberOfMatches,
+                  'playedMinutes': item.playedMinutes,
+                  'isSelected': item.isSelected ? 1 : 0
                 }),
         _playerDeletionAdapter = DeletionAdapter(
             database,
@@ -139,7 +157,8 @@ class _$PlayerDao extends PlayerDao {
                   'overallTrainingDays': item.overallTrainingDays,
                   'matchesPlayed': item.matchesPlayed,
                   'overallNumberOfMatches': item.overallNumberOfMatches,
-                  'playedMinutes': item.playedMinutes
+                  'playedMinutes': item.playedMinutes,
+                  'isSelected': item.isSelected ? 1 : 0
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -149,6 +168,8 @@ class _$PlayerDao extends PlayerDao {
   final QueryAdapter _queryAdapter;
 
   final InsertionAdapter<Player> _playerInsertionAdapter;
+
+  final UpdateAdapter<Player> _playerUpdateAdapter;
 
   final DeletionAdapter<Player> _playerDeletionAdapter;
 
@@ -164,6 +185,11 @@ class _$PlayerDao extends PlayerDao {
   @override
   Future<void> addPlayer(Player player) async {
     await _playerInsertionAdapter.insert(player, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updatePlayer(Player player) async {
+    await _playerUpdateAdapter.update(player, OnConflictStrategy.abort);
   }
 
   @override

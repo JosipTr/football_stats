@@ -34,4 +34,13 @@ class PlayerRepositoryImpl implements PlayerRepository {
       return Left(Exception(['Error: $e']));
     }
   }
+  
+  @override
+  Future<Either<Exception, void>> updatePlayer(Player player) async{
+    try{
+      return Right(await _appDatabase.playerDao.updatePlayer(player));
+    } catch (e) {
+      return Left(Exception(['Error: $e']));
+    }
+  }
 }

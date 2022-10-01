@@ -15,6 +15,7 @@ class Player {
   int matchesPlayed = 0;
   int overallNumberOfMatches = 0;
   double playedMinutes = 0;
+  bool isSelected = false;
 
   Player({this.id, required this.name, required this.surname});
 

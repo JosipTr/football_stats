@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 
 import 'domain/usecases/add_player_usecase.dart';
 import 'domain/usecases/remove_player_usecase.dart';
+import 'domain/usecases/update_player_usecase.dart';
 
 final injector = GetIt.instance;
 
@@ -17,7 +18,7 @@ Future<void> initDependencies() async{
   injector.registerSingleton(database);
 
   //bloc
-  injector.registerFactory<PlayerBloc>(() => PlayerBloc(injector(), injector(), injector()));
+  injector.registerFactory<PlayerBloc>(() => PlayerBloc(injector(), injector(), injector(), injector()));
 
   //repository
   injector.registerSingleton<PlayerRepository>(PlayerRepositoryImpl(injector()));
@@ -26,4 +27,5 @@ Future<void> initDependencies() async{
   injector.registerSingleton<GetPlayers>(GetPlayers(injector()));
   injector.registerSingleton<AddPlayer>(AddPlayer(injector()));
   injector.registerSingleton<RemovePlayer>(RemovePlayer(injector()));
+  injector.registerSingleton<UpdatePlayer>(UpdatePlayer(injector()));
 }
