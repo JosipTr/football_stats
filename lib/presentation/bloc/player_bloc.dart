@@ -38,7 +38,6 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   void _onAddPlayerEvent(
       AddPlayerEvent event, Emitter<PlayerState> emit) async {
     var either = await _addPlayer.call(event.player);
-    print('success');
     either.fold((l) => Exception(), (r) => players.add(event.player));
     emit(Loaded(players));
   }

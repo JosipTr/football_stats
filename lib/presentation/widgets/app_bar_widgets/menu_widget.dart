@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/player_model.dart';
-import '../../bloc/player_bloc.dart';
+import '../../../utilities/logic/functions/switch_select_state.dart';
 
 class MenuWidget extends StatelessWidget {
+  final List<Player> players;
   const MenuWidget({
-    Key? key,
+    Key? key, required this.players,
   }) : super(key: key);
 
   @override
@@ -14,19 +14,14 @@ class MenuWidget extends StatelessWidget {
     return PopupMenuButton<int>(
         itemBuilder: ((context) => [
               PopupMenuItem(
-                child: Text('Select all'),
+                value: 1,
+                child: const Text('Select all'),
                 onTap: () {
-                  List<Player> players =
-                      context.read<PlayerBloc>().players;
-                  for (int i = 0; i < players.length; i++) {
-                    players[i].isSelected =
-                        !players[i].isSelected;
-                    context
-                        .read<PlayerBloc>()
-                        .add(UpdatePlayerEvent(players[i]));
-                  }
+                  switchSelectState(context, players);
                 },
               )
             ]));
   }
+
+
 }
