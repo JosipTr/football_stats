@@ -58,7 +58,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       UpdatePlayerEvent event, Emitter<PlayerState> emit) async {
     var either = await _updatePlayer.call(event.player);
     either.fold((l) => Exception(), (r) {
-        players[players.indexWhere((element) => element.id == event.player.id)] = event.player;
+        players[players.indexWhere((player) => player.id == event.player.id)] = event.player;
       });
     if (players.isEmpty) {
       emit(Empty('Empty list'));

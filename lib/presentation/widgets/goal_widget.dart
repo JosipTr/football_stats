@@ -16,6 +16,7 @@ class GoalWidget extends StatelessWidget {
         itemCount: state.players.length,
         itemBuilder: ((context, index) => ListTile(
           tileColor: state.players[index].isSelected ? Colors.grey : Colors.white,
+          leading: CircleAvatar(child: Text('${state.players[index].id}')),
               title: Text(state.players[index].name),
               trailing: IconButton(
                   icon: const Icon(Icons.delete),

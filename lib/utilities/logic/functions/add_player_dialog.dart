@@ -45,6 +45,7 @@ void showAddPlayerDialog(BuildContext context) {
                         try{
                         context.read<PlayerBloc>().add(
                             AddPlayerEvent(Player(name: name, surname: surname)));
+                        context.read<PlayerBloc>().add(GetPlayersEvent());
                         } catch (e) {
                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Pogreška: Unesi ime i prezime'),));
                         }
