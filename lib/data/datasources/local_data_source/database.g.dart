@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: library_private_types_in_public_api
-
 part of 'database.dart';
 
 // **************************************************************************
@@ -87,7 +85,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Player` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `surname` TEXT NOT NULL, `goals` INTEGER NOT NULL, `assists` INTEGER NOT NULL, `yellowCards` INTEGER NOT NULL, `redCards` INTEGER NOT NULL, `trainingDays` INTEGER NOT NULL, `overallTrainingDays` INTEGER NOT NULL, `matchesPlayed` INTEGER NOT NULL, `overallNumberOfMatches` INTEGER NOT NULL, `playedMinutes` REAL NOT NULL, `isSelected` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Player` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `surname` TEXT NOT NULL, `goals` INTEGER, `assists` INTEGER, `yellowCards` INTEGER, `redCards` INTEGER, `trainingDays` INTEGER, `overallTrainingDays` INTEGER, `matchesPlayed` INTEGER, `overallNumberOfMatches` INTEGER, `playedMinutes` REAL, `isSelected` INTEGER NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -181,7 +179,16 @@ class _$PlayerDao extends PlayerDao {
         mapper: (Map<String, Object?> row) => Player(
             id: row['id'] as int?,
             name: row['name'] as String,
-            surname: row['surname'] as String));
+            surname: row['surname'] as String,
+            goals: row['goals'] as int?,
+            assists: row['assists'] as int?,
+            matchesPlayed: row['matchesPlayed'] as int?,
+            overallNumberOfMatches: row['overallNumberOfMatches'] as int?,
+            overallTrainingDays: row['overallTrainingDays'] as int?,
+            playedMinutes: row['playedMinutes'] as double?,
+            redCards: row['redCards'] as int?,
+            trainingDays: row['trainingDays'] as int?,
+            yellowCards: row['yellowCards'] as int?));
   }
 
   @override

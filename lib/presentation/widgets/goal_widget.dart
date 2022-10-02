@@ -25,7 +25,7 @@ class GoalWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                    'Golovi: ${state.players[index].goals} \nGolovi po utakmici: ${state.players[index].getGoalPerMatch()} | ${state.players[index].getGoalEfficiency()}')
+                    'Golovi: ${state.players[index].goals} \nGolovi po utakmici: ${state.players[index].getGoalPerMatch()} | ${state.players[index].getGoalEfficiency()} %')
               ],
             ),
             onTap: () => showAddGoalsDialog(context, state.players[index]),
