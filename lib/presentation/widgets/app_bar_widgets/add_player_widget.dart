@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/logic/functions/add_player_dialog.dart';
+import '../../../utilities/logic/functions/show_dialog/add_player_dialog.dart';
 
 class AddPlayerWidget extends StatelessWidget {
   const AddPlayerWidget({

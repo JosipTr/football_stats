@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:football_stats/presentation/pages/assist_page.dart';
+import 'package:football_stats/presentation/pages/card_page.dart';
 import 'package:football_stats/presentation/pages/goal_page.dart';
+import 'package:football_stats/presentation/pages/match_page.dart';
+import 'package:football_stats/presentation/pages/training_page.dart';
 import 'package:football_stats/utilities/navigation/constants/nav_bar_item.dart';
 import 'package:football_stats/utilities/navigation/navigation_cubit.dart';
 import '../../utilities/logic/functions/show_app_bar_widgets.dart';
@@ -29,13 +33,13 @@ class HomePage extends StatelessWidget {
           if (state.navBarItem == NavBarItem.goal) {
             return const GoalPage();
           } else if (state.navBarItem == NavBarItem.assist) {
-            return const Scaffold();
+            return const AssistPage();
           } else if (state.navBarItem == NavBarItem.card) {
-            return const Scaffold();
+            return const CardPage();
           } else if (state.navBarItem == NavBarItem.training) {
-            return const Scaffold();
+            return const TrainingPage();
           } else if (state.navBarItem == NavBarItem.match) {
-            return const Scaffold();
+            return const MatchPage();
           }
           return const Text('Error');
         },

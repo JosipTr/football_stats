@@ -1,8 +1,8 @@
   import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/models/player_model.dart';
-import '../../../presentation/bloc/player_bloc.dart';
+import '../../../../data/models/player_model.dart';
+import '../../../../presentation/bloc/player_bloc.dart';
 
 void showAddPlayerDialog(BuildContext context) {
     showDialog(

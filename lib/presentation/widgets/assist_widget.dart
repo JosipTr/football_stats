@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../utilities/logic/functions/show_dialog/show_add_goals_dialog.dart';
+import '../../utilities/logic/functions/show_dialog/show_add_assist_dialog.dart';
 import '../bloc/player_bloc.dart';
 
-class GoalWidget extends StatelessWidget {
+class AssistWidget extends StatelessWidget {
   final Loaded state;
-  const GoalWidget({
+  const AssistWidget({
     Key? key,
     required this.state,
   }) : super(key: key);
@@ -24,10 +24,10 @@ class GoalWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                    'Golovi: ${state.players[index].goals} \nGolovi po utakmici: ${state.players[index].getGoalPerMatch()} | ${state.players[index].getGoalEfficiency()} %')
+                    'Asistencije: ${state.players[index].assists} \nAsistencije po utakmici: ${state.players[index].getAssistsPerMatch()} | ${state.players[index].getAssistsEfficiency()} %')
               ],
             ),
-            onTap: () => showAddGoalsDialog(context, state.players[index]),
+            onTap: () => showAddAssistDialog(context, state.players[index]),
             onLongPress: () {
               state.players[index].isSelected =
                   !state.players[index].isSelected;
